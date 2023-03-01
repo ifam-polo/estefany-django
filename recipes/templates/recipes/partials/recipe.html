@@ -15,7 +15,6 @@
     </div>
 
     <div class="recipe-author">
-
         
         <span class="recipe-author-item">
             <i class="fas fa-user"><ion-icon name="accessibility-sharp"></ion-icon></i>
@@ -25,10 +24,11 @@
                 {% else %}
                     {{recipe.author.username}}
                 {% endif %}
-            {% else %}
+            {%else%}
                 Desconhecido
             {% endif %}
         </span>
+        
    
 
         <span class="recipe-author-item">
