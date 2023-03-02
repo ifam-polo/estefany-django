@@ -28,14 +28,11 @@
                 Desconhecido
             {% endif %}
         </span>
-        
-   
 
         <span class="recipe-author-item">
             <i class="fas fa-calendar-alt"><ion-icon name="calendar-sharp"></ion-icon></i>
             {{recipe.created_at}}
         </span>
-
 
         {% if recipe.category is not None %}
             <span class="recipe-author-item">
@@ -77,7 +74,12 @@
 
     {% if is_detail_page is True %}
         <div class="preparation-steps">
-            {{ recipe.preparation_steps|linebreaksbr }}
+            {% if recipe.preparation_steps_is_html is True %}
+                {{ recipe.preparation_steps|safe }}
+            {% else %}
+                {{ recipe.preparation_steps|linebreaksbr }}
+            {% endif %}
         </div>
     {% endif %}
+
 </div>
