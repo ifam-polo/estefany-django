@@ -32,7 +32,6 @@ def recipe(request, id):
         id=id,
         is_published=True,
     ).order_by('-id').first()
-
     return render(request,'recipes/pages/recipe-view.html', context={
         'recipe':recipe,
         'is_detail_page': True,
