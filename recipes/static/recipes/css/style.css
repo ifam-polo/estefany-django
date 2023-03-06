@@ -295,3 +295,20 @@ h1,h2,h3,h4,h5,h6{
 .main-footer a:hover{
     filter: brightness(.8);
 }
+
+
+
+/* Generics */
+.center{
+    text-align: center;
+}
+
+
+.m-x{
+    margin: 0 var(--spacing-gutter-medium);
+}
+
+
+.m-y{
+    margin: 0 var(--spacing-gutter-medium);
+}
