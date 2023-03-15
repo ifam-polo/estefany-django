@@ -33,7 +33,7 @@
 
         <span class="recipe-author-item">
             <ion-icon name="calendar-sharp"></ion-icon>
-            {{recipe.created_at}}
+            {{ recipe.created_at|date:"d/m/Y" }}
         </span>
 
         {% if recipe.category is not None %}
@@ -47,20 +47,20 @@
     </div>
 
     <div class="recipe-content">
-        <p>{{recipes.description}}</p>
+        <p>{{recipe.description}}</p>
     </div>
 
     <div class="recipe-meta-container">
         <div class="recipe-meta recipe-preparation">
             <h3 class="recipe-meta-title"> <ion-icon name="alarm-sharp"></ion-icon> Preparo</h3>
             <div class="recipe-meta-text">
-                {{recipe.preparation_time}}
+                {{recipe.preparation_time}} {{recipe.preparation_time_unit}}
             </div>
         </div>
         <div class="recipe-meta recipe-servings">
             <h3 class="recipe-meta-title"><ion-icon name="pizza-sharp"></ion-icon> Porções</h3>
             <div class="recipe-meta-text">
-                {{recipe.servings}}
+                {{recipe.servings}} {{recipe.servings_unit}}
             </div>
         </div>
     </div>
