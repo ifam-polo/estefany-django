@@ -1,1 +1,5 @@
 __localcode
+.env
+db.sqlites
+media
+__pycache__
