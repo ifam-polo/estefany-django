@@ -30,12 +30,12 @@ def make_recipe():
         'category': {
             'name': fake.word()
         },
-        'cover':{
+        'cover': {
             'url': 'https://loremflickr.com/%s/%s/food,cook' % rand_ratio(),
         }
     }
 
 
-if __name__ =='__main__':
+if __name__ == '__main__':
     from pprint import pprint
     pprint(make_recipe())
