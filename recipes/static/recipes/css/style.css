@@ -305,6 +305,11 @@
   }
 
   /* Messages */
+  .messages-container{
+    display: flex;
+    flex-flow: color nowrap;
+    gap: calc(var(--spacing-gutter-medium) / 2);
+  }
   .message {
     padding: 1rem;
     border-radius: 4px;
@@ -362,4 +367,10 @@
 
 .m-y{
     margin: 0 var(--spacing-gutter-medium);
+}
+
+@media (max-width: 600px) {
+  .main-content-list{
+    grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+  }
 }
