@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'recipes',  # temos que infromar ao django que tambem temos apps
+    'authors',
 ]
 
 MIDDLEWARE = [

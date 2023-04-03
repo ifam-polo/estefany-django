@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('recipes.urls')),
     path('recipes/', include('recipes.urls')),  # dominio.com/recipes/
+    path('authors/', include('authors.urls')),
 ]
 
 
