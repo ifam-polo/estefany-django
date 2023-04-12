@@ -351,6 +351,7 @@
     display: flex;
     flex-flow: color nowrap;
     gap: calc(var(--spacing-gutter-medium) / 2);
+    align-items: center;
   }
   .message {
     padding: 1rem;
