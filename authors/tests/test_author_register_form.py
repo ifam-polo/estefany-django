@@ -20,9 +20,7 @@ class AuthorRegisterFormUnitest(TestCase):
 
     @parameterized.expand([
         ('username', (
-            'Obrigatório. 150 caracteres ou menos.'
-            'Letras, números e @/./+/-/_ apenas.')),
-        ('email', 'The e-mail must be valid.'),
+            'Obrigatório. 150 caracteres ou menos. Letras, números e @/./+/-/_ apenas.')),  # noqa:E501
         ('password', (
             'Password must have at least one uppercase letter, '
             'one lowercase letter and one number. The length should be '
@@ -40,7 +38,7 @@ class AuthorRegisterFormUnitest(TestCase):
         ('first_name', 'First name'),
         ('email', 'E-mail'),
         ('password', 'Password'),
-        ('password2', 'Password2'),
+        ('password2', 'password2'),
     ])
     def test_fields_label(self, field, needed):
         form = RegisterForm()

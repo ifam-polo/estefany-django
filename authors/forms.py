@@ -67,10 +67,11 @@ class RegisterForm(forms.ModelForm):
         ]
 
         labels = {
-            'first_name': 'first_name',
-            'last_name': 'last_name',
-            'username': 'username',
-            'email': 'email',
+            'first_name': 'First name',
+            'last_name': 'Last name',
+            'username': 'Username',
+            'email': 'E-mail',
+            'password': 'Password'
         }
 
         help_texts = {
