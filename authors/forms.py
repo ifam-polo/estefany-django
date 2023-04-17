@@ -39,10 +39,16 @@ class RegisterForm(forms.ModelForm):
 
     username = forms.CharField(
         label='Username',
-        help_text='Obrigatório. 150 caracteres ou menos. Letras, números e @/./+/-/_ apenas.',  # noqa:E501
+        help_text=(
+            'Username must have letters, numbers or one of those @.+-_. '
+            'The length should be between 4 and 150 characters'
+        ),
         error_messages={
-                'required': 'This field must not be empty',
-        }
+            'required': 'This field must not be empty',
+            'min_length': 'Username must have a at least 4 characters',
+            'max_length': 'Username must have less than 150 characters'
+        },
+        min_length=4, max_length=150,
     )
     first_name = forms.CharField(
         error_messages={'required': 'Write your first name'},
