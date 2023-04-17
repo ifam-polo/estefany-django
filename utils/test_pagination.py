@@ -102,6 +102,3 @@ class PaginationTest(TestCase):
             current_page=21,
         )['pagination']
         self.assertEqual([17, 18, 19, 20], pagination)
-
-    def amount_of_items_shown_in_the_home(self):
-        ...
