@@ -151,8 +151,6 @@ class AuthorRegisterFormIntegrationTest(DjangoTestCase):  # teste de integraçã
         self.assertIn(msg, response.context['form'].errors.get('email'))
         self.assertIn(msg, response.content.decode('utf-8'))
 
-    # rever este test
-
     def test_author_created_can_login(self):
         url = reverse('authors:register_create')
 
