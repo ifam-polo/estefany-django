@@ -34,7 +34,7 @@ class AuthorsRegisterTest(AuthorsBaseTest):
 
         return form
 
-    def test_empty_first_name_message(self):
+    def test_empty_first_name_error_message(self):
         def callback(form):
             first_name_field = self.get_by_placeholder(form, 'Ex.: John')
             first_name_field.send_keys(' ')
@@ -43,7 +43,7 @@ class AuthorsRegisterTest(AuthorsBaseTest):
             self.assertIn('Write your first name', form.text)
         self.form_field_test_with_callback(callback)
 
-    def test_empty_last_name_message(self):
+    def test_empty_last_name_error_message(self):
         def callback(form):
             last_name_field = self.get_by_placeholder(form, 'Ex.: Doe')
             last_name_field.send_keys(' ')
@@ -69,3 +69,35 @@ class AuthorsRegisterTest(AuthorsBaseTest):
             form = self.get_form()
             self.assertIn('The e-mail must be valid.', form.text)
         self.form_field_test_with_callback(callback)
+
+    def test_password_do_not_match(self):
+        def callback(form):
+            password1 = self.get_by_placeholder(form, 'Type your password')
+            password2 = self.get_by_placeholder(form, 'Repeat your password')
+            password1.send_keys('P@ssw0rd')
+            password1.send_keys('P@ssw0rd_Diferent')
+            password2.send_keys(Keys.ENTER)
+            form = self.get_form()
+            self.assertIn('Password and password2 must be equal', form.text)
+        self.form_field_test_with_callback(callback)
+
+    def test_user_valid_data_register_successfully(self):
+        self.browser.get(self.live_server_url+'/authors/register/')
+        form = self.get_form()
+
+        self.get_by_placeholder(form, 'Ex.: John').send_keys('First Name')
+        self.get_by_placeholder(form, 'Ex.: Doe').send_keys('Last Name')
+        self.get_by_placeholder(form, 'Your username').send_keys('my_username')
+        self.get_by_placeholder(
+            form, 'Your e-mail').send_keys('email@valid.com')
+        self.get_by_placeholder(
+            form, 'Type your password').send_keys('P@ssw0rd')
+        self.get_by_placeholder(
+            form, 'Repeat your password').send_keys('P@ss0rd1')
+
+        form.submit()
+
+        self.assertIn(
+            'Your user is created, please log in.',
+            self.browser.find_element(By.TAG_NAME, 'body').text
+        )
