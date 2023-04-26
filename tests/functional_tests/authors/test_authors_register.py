@@ -5,11 +5,6 @@ from .base import AuthorsBaseTest
 
 
 class AuthorsRegisterTest(AuthorsBaseTest):
-    def get_by_placeholder(self, web_element, placeholder):
-        return web_element.find_element(
-            By.XPATH, f'//input[@placeholder="{placeholder}"]'
-        )
-
     def fill_form_dummy_data(self, form):
         fields = form.find_elements(By.TAG_NAME, 'input')
 
@@ -20,14 +15,14 @@ class AuthorsRegisterTest(AuthorsBaseTest):
     def get_form(self):
         return self.browser.find_element(
             By.XPATH,
-            'html/body/main/div[2]/form'
+            '/html/body/main/div[2]/form'
         )
 
     def form_field_test_with_callback(self, callback):
         self.browser.get(self.live_server_url + '/authors/register/')
         form = self.get_form()
 
-        self.fill_form_dummy_data
+        self.fill_form_dummy_data(form)
         form.find_element(By.NAME, 'email').send_keys('dummy@email.com')
 
         callback(form)
