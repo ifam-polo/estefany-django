@@ -45,3 +45,27 @@ class AuthorsLoginTest(AuthorsBaseTest):
             'Not Found',
             self.browser.find_element(By.TAG_NAME, 'body').text
         )
+
+    def test_form_login_is_invalid(self):
+        # usuário abre a página de login
+        self.browser.get(
+            self.live_server_url + reverse('authors:login')
+        )
+
+        # usuário ve o formulário de login
+        form = self.browser.find_element(By.CLASS_NAME, 'main-form')
+
+        # e tenta enviar valores vazios
+        username = self.get_by_placeholder(form, 'Type your username')
+        password = self.get_by_placeholder(form, 'Type your password')
+        username.send_keys(' ')
+        password.send_keys(' ')
+
+        # usuário envia o formulário
+        form.submit()
+
+        # ve uma mensagem de eeor da tela
+        self.assertIn(
+            'Invalid username or password',
+            self.browser.find_element(By.TAG_NAME, 'body').text
+        )
