@@ -94,6 +94,6 @@ class AuthorsRegisterTest(AuthorsBaseTest):
         form.submit()
 
         self.assertIn(
-            'Your user is created, please log in.',
+            'Username must have letters, numbers or one of those @.+-_. The length should be between 4 and 150 characters',
             self.browser.find_element(By.TAG_NAME, 'body').text
         )
