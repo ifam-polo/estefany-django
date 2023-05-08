@@ -108,4 +108,4 @@ class RecipeDetail(DetailView):
             'is_detail_page': True
         })
 
-        return ctx
+        return ctx 
