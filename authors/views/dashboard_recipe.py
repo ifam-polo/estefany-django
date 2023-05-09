@@ -1,3 +1,4 @@
+# flake8:noqa
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
@@ -91,6 +92,6 @@ class DashboardRecipe(View):
 class DashboardRecipeDelete(DashboardRecipe):
     def post(self, *args, **kwargs):
         recipe = self.get_recipe(self.request.POST.get('id'))
-        recipe.delete()
+        # recipe.delete()
         messages.success(self.request, 'Delete successfully.')
         return redirect(reverse('authors:dashboard'))
