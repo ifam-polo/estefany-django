@@ -8,3 +8,5 @@ db.sqlite3-journal
 .coveragerc
 requiriments.txt
 db.sqlite3
+gunicorn-error-log
+static/
