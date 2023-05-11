@@ -1,17 +1,18 @@
 # flake8: noqa
 import os
 from typing import Any, Dict
+
 from django import http
 from django.db.models import Q
+from django.forms.models import model_to_dict
+from django.http import JsonResponse
 from django.http.response import Http404
 from django.views.generic import DetailView, ListView
-from django.http import JsonResponse
-from django.forms.models import model_to_dict
 
 from recipes.models import Recipe
 from utils.pagination import make_pagination
 
-PER_PAGE = int(os.environ.get('PER_PAGE', 6)) # type: ignore
+PER_PAGE = int(os.environ.get('PER_PAGE', 6))  # type: ignore
 
 
 class RecipeListViewBase(ListView):
@@ -52,10 +53,12 @@ class RecipeListViewHomeApi(RecipeListViewBase):
     def render_to_response(self, context, **response_kwargs):
         recipes = self.get_context_data()['recipes']
         recipes_list = recipes.object_list.values()
+
         return JsonResponse(
             list(recipes_list),
             safe=False
         )
+
 
 class RecipeListViewCategory(RecipeListViewBase):
     template_name = 'recipes/pages/category.html'
@@ -124,7 +127,7 @@ class RecipeDetail(DetailView):
             'is_detail_page': True
         })
 
-        return ctx 
+        return ctx
 
 
 class RecipeDetailAPI(RecipeDetail):
@@ -137,7 +140,7 @@ class RecipeDetailAPI(RecipeDetail):
 
         if recipe_dict.get('cover'):
             recipe_dict['cover'] = self.request.build_absolute_uri() + \
-                  recipe_dict['cover'].url[1:]
+                recipe_dict['cover'].url[1:]
         else:
             recipe_dict['cover'] = ''
 
@@ -146,5 +149,5 @@ class RecipeDetailAPI(RecipeDetail):
 
         return JsonResponse(
             recipe_dict,
-            safe = False
+            safe=False
         )

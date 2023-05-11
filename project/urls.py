@@ -23,6 +23,7 @@ urlpatterns = [
     path('', include('recipes.urls')),
     path('recipes/', include('recipes.urls')),  # dominio.com/recipes/
     path('authors/', include('authors.urls')),
+    path('__debug__/', include('debug_toolbar.urls')),
 ]
 
 
