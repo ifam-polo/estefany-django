@@ -1,9 +1,9 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models import F, Value
+from django.db.models.functions import Concat
 from django.urls import reverse
 from django.utils.text import slugify
-from django.db.models.functions import Concat
-from django.db.models import F, Value
 
 
 # Create your models here.
@@ -12,7 +12,7 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-    
+
 
 class RecipeManager(models.Manager):
     def get_published(self):
