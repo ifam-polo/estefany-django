@@ -1,5 +1,5 @@
 import os
-
+from django.db.models.aggregates import Count
 from django.db.models import Q
 from django.forms.models import model_to_dict
 from django.http import JsonResponse
@@ -14,12 +14,13 @@ PER_PAGE = int(os.environ.get('PER_PAGE', 6))  # type: ignore
 
 
 def theory(request, *args, **kwargs):
-    recipes = Recipe.objetcs.all()  # type: ignore
+    recipes = Recipe.objects.get_published()
+    number_of_recipes = recipes.aggregate(number=Count('id'))
 
     context = {
-        'recipes': recipes
+        'recipes': recipes,
+        'number_of_recipes': number_of_recipes['number']
     }
-
     return render(
         request,
         'recipes/pages/theory.html',
