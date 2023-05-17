@@ -5,6 +5,8 @@ from django.db.models.functions import Concat
 from django.urls import reverse
 from django.utils.text import slugify
 
+from tag.models import Tag
+
 
 # Create your models here.
 class Category(models.Model):
@@ -49,6 +51,7 @@ class Recipe(models.Model):
     author = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True
     )
+    tags = models.ManyToManyField(Tag)
 
     def __str__(self):
         return self.title

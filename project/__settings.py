@@ -15,6 +15,7 @@ from pathlib import Path
 
 from django.contrib.messages import constants
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -29,6 +30,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'INSECURE')
 DEBUG = True if os.environ.get('DEBUG') == '1' else False
 
 ALLOWED_HOSTS: list[str] = ['*']  # type: ignore
+CSRF_TRUSTED_ORIGINS: list[str] = []
 
 
 # Application definition
@@ -40,8 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'recipes',  # temos que infromar ao django que tambem temos apps
+    'recipes',
     'authors',
+    'tag',
     'debug_toolbar',
 ]
 
