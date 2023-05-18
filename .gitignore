@@ -1,7 +1,6 @@
 __localcode
 .env
 db.sqlites
-media
 __pycache__
 db.sqlite3-journal
 .coverage
@@ -9,4 +8,3 @@ db.sqlite3-journal
 requiriments.txt
 db.sqlite3
 gunicorn-error-log
-static/
