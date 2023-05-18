@@ -7,9 +7,9 @@ from django.http import JsonResponse
 from django.http.response import Http404
 from django.shortcuts import render
 from django.views.generic import DetailView, ListView
-from tag.models import Tag
 
 from recipes.models import Recipe
+from tag.models import Tag
 from utils.pagination import make_pagination
 
 PER_PAGE = int(os.environ.get('PER_PAGE', 6))  # type: ignore
@@ -42,7 +42,7 @@ class RecipeListViewBase(ListView):
         qs = qs.filter(
             is_published=True,
         )
-        qs = qs.select_related('author', 'category')
+        qs = qs.select_related('author', 'category', 'author__profile')
         qs = qs.prefetch_related('tags')
         return qs
 
@@ -99,7 +99,7 @@ class RecipeListViewCategory(RecipeListViewBase):
             raise Http404
 
         return qs
-    
+
 
 class RecipeListViewTag(RecipeListViewBase):
     template_name = 'recipes/pages/tag.html'
@@ -113,7 +113,7 @@ class RecipeListViewTag(RecipeListViewBase):
         ctx = super().get_context_data(*args, **kwargs)
         page_title = Tag.objects.filter(
             slug=self.kwargs.get('slug', '')
-            ).first()
+        ).first()
 
         if not page_title:
             page_title = 'No recipes found'
@@ -135,7 +135,7 @@ class RecipeListViewSearch(RecipeListViewBase):
 
         if not search_term:
             raise Http404()
-        
+
         qs = super().get_queryset(*args, **kwargs)
         qs = qs.filter(
             Q(
