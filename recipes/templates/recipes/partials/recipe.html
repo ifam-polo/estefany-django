@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <div class="recipe recipe-list-item">
     {% if recipe.cover %}
         <div class="recipe-cover">
@@ -60,13 +62,13 @@
 
     <div class="recipe-meta-container">
         <div class="recipe-meta recipe-preparation">
-            <h3 class="recipe-meta-title"> <ion-icon name="alarm-sharp"></ion-icon> Preparo</h3>
+            <h3 class="recipe-meta-title"> <ion-icon name="alarm-sharp"></ion-icon> {% translate "Preparation" %}</h3>
             <div class="recipe-meta-text">
                 {{recipe.preparation_time}} {{recipe.preparation_time_unit}}
             </div>
         </div>
         <div class="recipe-meta recipe-servings">
-            <h3 class="recipe-meta-title"><ion-icon name="pizza-sharp"></ion-icon> Porções</h3>
+            <h3 class="recipe-meta-title"><ion-icon name="pizza-sharp"></ion-icon> {% translate "Servings" %}</h3>
             <div class="recipe-meta-text">
                 {{recipe.servings}} {{recipe.servings_unit}}
             </div>
@@ -77,7 +79,7 @@
         <footer class="recipe-footer">
             <a clas="recipe-read-more button button-dark button-full-width" href="{% url 'recipes:recipe' recipe.id %}">
                 <i class="fas fa-eye"><ion-icon name="eye-sharp"></ion-icon></i>
-                <span>ver mais...</span>
+                <span>{% translate "read more" %}...</span>
             </a>
         </footer>
     {% endif %}
