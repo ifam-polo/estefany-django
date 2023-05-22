@@ -14,7 +14,7 @@ from ..serializers import RecipeSerializer, TagSerializer
 
 
 class RecipeAPIv2Pagination(PageNumberPagination):
-    page_size = 2
+    page_size = 1
 
 
 class RecipeAPIv2ViewSet(ModelViewSet):
@@ -64,8 +64,6 @@ class RecipeAPIv2ViewSet(ModelViewSet):
         return super().get_permissions()
 
     def list(self, request, *args, **kwargs):
-        print('REQUEST', request.user)
-        print(request.user.is_authenticated)
         return super().list(request, *args, **kwargs)
 
     def create(self, request, *args, **kwargs):
