@@ -5,7 +5,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             BASE_DIR / 'base_templates',
-            BASE_DIR / 'recipes/css/style.css',
+            BASE_DIR / 'base_static/global/style.css',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
