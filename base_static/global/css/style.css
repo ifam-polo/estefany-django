@@ -42,7 +42,6 @@
     --spacing-gutter-large: 4rem;
 }
 
-
 * {
     padding: 0;
     margin: 0;
@@ -303,7 +302,6 @@
   .pagination .page-current{
     background: var(--color-primary-dark);
   }
-
 
   /* Forms */
 
